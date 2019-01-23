@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -36,10 +39,6 @@ class User
      */
     private $avatar;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $slug;
 
     public function getId(): ?int
     {
@@ -94,15 +93,23 @@ class User
         return $this;
     }
 
-    public function getSlug(): ?string
+
+    public function getRoles()
     {
-        return $this->slug;
+
     }
 
-    public function setSlug(string $slug): self
+    public function getSalt()
     {
-        $this->slug = $slug;
 
-        return $this;
+    }
+    public function getUsername()
+    {
+
+    }
+
+    public function eraseCredentials()
+    {
+
     }
 }

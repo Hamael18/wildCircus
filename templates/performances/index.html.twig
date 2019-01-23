@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All performances!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="my-5">All the performances</h1>
+        <div class="row">
+            {% for performance in performances %}
+
+                <div class="card col-6 my-2">
+                    <a href="{{ path('performances_show', {'id' : performance.id}) }}">
+                        <img class="card-img-top my-2" src="{{ performance.picture }}">
+                        <div class="card-header">
+                            {{ performance.title }}
+                        </div></a>
+                    <div class="card-body">
+                        {{ performance.date | date('d/m/Y') }} à {{ performance.time | date('H:i') }} <br>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

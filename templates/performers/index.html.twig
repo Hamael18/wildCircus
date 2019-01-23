@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All the performers{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="my-5">All the performers</h1>
+        <div class="row">
+            {% for performer in performers %}
+                <div class="card col-6 my-2">
+                    <img class="card-img-top my-2" src="{{ performer.picture }}">
+                    <div class="card-header">
+                        {{ performer.firstName ~ ' ' ~ performer.name }}
+                    </div>
+                    <div class="card-body">
+                        {{ performer.biography }} <br>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

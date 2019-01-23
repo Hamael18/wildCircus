@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome at Wild Circus!!!{% endblock %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h1 class="my-5">Edit the message of the homepage</h1>
+        {{ form_start(form) }}
+        {{ form_row(form) }}
+        <div class="d-flex justify-content-center my-5">
+            <button type="submit" class="btn btn-warning">Edit performance</button></div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

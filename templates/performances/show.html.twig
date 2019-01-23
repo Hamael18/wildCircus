@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome at Wild Circus!!!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+    <h1 class="my-5"> {{ performance.title }}</h1>
+
+        <h3> Date : {{ performance.date | date('d/m/Y')  }}</h3>
+        <h3> Heure : {{ performance.time | date('H:i') }}</h3>
+
+        <div class="alert alert-heading alert-light">{{ performance.description }}</div>
+
+    <div class="row">
+    {% for performer in performance.performers %}
+
+    <div class="card col-4 my-2">
+        <img class="card-img-top my-2" src="{{ performer.picture }}">
+        <div class="card-header">
+            {{ performer.firstName ~ ' ' ~ performer.name }}
+        </div>
+    </div>
+
+        {% endfor %}
+    </div>
+    </div>
+
+{% endblock %}

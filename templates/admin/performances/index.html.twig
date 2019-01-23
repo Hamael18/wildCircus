@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All performances!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="my-5">All the performances <a class="btn btn-success" href="{{ path('performances_create') }}"><i class="fas fa-plus-circle"></i>Add a new performance</a></h1>
+        <div class="row">
+            {% for performance in performances %}
+
+                <div class="card col-6 my-2">
+                    <a href="{{ path('performances_show', {'id' : performance.id}) }}">
+                        <img class="card-img-top my-2" src="{{ performance.picture }}">
+                        <div class="card-header">
+                            {{ performance.title }}
+                        </div></a>
+                    <div class="card-body">
+                        {{ performance.date | date('d/m/Y') }} à {{ performance.time | date('H:i') }} <br>
+
+                        <a class="btn btn-warning" href="{{ path('performances_edit', {'id' : performance.id}) }}"><i class="fas fa-pen"></i> Edit </a>
+                        <a class="btn btn-danger" href="{{ path('performances_delete', {'id' : performance.id}) }}"><i class="fas fa-trash"></i> Delete </a>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome at Wild Circus!!!{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1 class="my-5">Welcome at the Wild Circus!</h1>
+
+        <div class="">
+            <p>{{ aboutUs.description | raw }}</p>
+        </div>
+
+        <h2 class="my-3">Our prices</h2>
+
+        <table class="table table-primary table-hover my-5">
+            <thead class="thead-dark">
+            <tr>
+                <th class=""></th>
+                {% for visitor in visitors %}
+                    <th class="">{{ visitor.type }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            {% for period in periods %}
+                <tr>
+                    <th scope="row">{{ period.dayType }}</th>
+                    {% for price in prices if price.periods.dayType == period.dayType %}
+                        <td>{{ price.price }} € <a href="#"><i class="fas fa-pen text-white"></i> </a> </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+
+        <h2 class="my-3">Incoming perfomances</h2>
+
+        <div class="row">
+            {% for performance in performances %}
+
+                    <div class="card col-4 my-2">
+                        <a href="{{ path('performances_show', {'id' : performance.id}) }}"><img class="card-img-top my-2" src="{{ performance.picture }}">
+                        <div class="card-header">
+                            {{ performance.title }}
+                        </div>               </a>
+                        <div class="card-body">
+                            {{ performance.date | date('m/d/Y') }} at {{ performance.time | date('H:i') }}
+                        </div>
+                    </div>
+
+            {% endfor %}
+        </div>
+
+        <h2 class="my-3">Last Performers</h2>
+        <div class="row">
+            {% for performer in performers %}
+                <div class="card col-4 my-2">
+                    <img class="card-img-top my-2" src="{{ performer.picture }}">
+                    <div class="card-header">
+                        {{ performer.firstName ~ ' ' ~ performer.name }}
+                    </div>
+                    <div class="card-body">
+                        {{ performer.biography }} <br>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
